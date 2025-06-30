@@ -86,3 +86,30 @@ exports.verifyPayment = async (req, res) => {
     res.status(500).json({ message: 'Payment verification failed' });
   }
 };
+
+exports.getCustomerBookings = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const [bookings] = await pool.query(
+      `SELECT 
+         b.id AS booking_id,
+         r.room_type,
+         b.from_date,
+         b.to_date,
+         b.payment_status,
+         b.payment_mode,
+         b.is_member
+       FROM bookings b
+       JOIN rooms r ON b.room_id = r.id
+       WHERE b.user_id = ?
+       ORDER BY b.from_date DESC`,
+      [userId]
+    );
+
+    res.json({ bookings });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch booking history' });
+  }
+};

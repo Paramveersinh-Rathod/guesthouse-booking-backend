@@ -27,6 +27,7 @@ exports.getFrequentCustomers = async (req, res) => {
       FROM users u
       JOIN bookings b ON u.id = b.user_id
       GROUP BY u.id
+      HAVING booking_count >= 2
       ORDER BY booking_count DESC
       LIMIT 10
     `);
