@@ -51,35 +51,13 @@ npm install
 
 3. Create a .env file
 Create your .env file (use .env.example as a reference):
-
-PORT=8000
-DB_HOST=localhost
+PORT = 
+DB_HOST =
 DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=guesthouse
-JWT_SECRET=your_jwt_secret
+DB_PASSWORD =
+DB_NAME =
+JWT_SECRET =
 
-4. Run the server
-npm start
-Server will run at:
-📍 http://localhost:8000/
-
-5. API Testing
-Use Postman to test endpoints.
-Make sure to pass Authorization: Bearer <token> in protected routes.
-
-🗃️ "guesthouse" Database
-=> Tables
-users
-rooms
-room_prices
-room_photos
-bookings
-payments
-
-📸 File Uploads
-Images uploaded via /api/admin/rooms/upload-image are stored in /uploads
-Use: http://localhost:8000/uploads/<filename>
 
 🛡 Auth Tokens
 JWT tokens are returned on login and must be sent in headers:
